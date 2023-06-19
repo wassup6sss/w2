@@ -1,0 +1,11 @@
+  author = author_pattern.search(item).group(1)
+
+        tags = tags_pattern.findall(item)
+
+        score = score_pattern.search(item).group(1)
+        lock.acquire()
+        with open("./qq.csv", "a+", encoding="utf-8") as f:
+            f.write(
+                f'{replace_mark(title)},{url},{sign},{exclusive},{replace_mark(author)},{"#".join(tags)},"{replace_mark(score)}" \n')
+
+        lock.release()
